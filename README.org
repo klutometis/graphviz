@@ -1,0 +1,2 @@
+I can’t continue to copy and paste ad-hoc graphviz preambles; let’s
+write a few abstractions.
