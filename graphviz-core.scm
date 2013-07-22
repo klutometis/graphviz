@@ -33,8 +33,8 @@
                         (default-title)))
    ((width height font-size title)
     (display "digraph G {")
-    (display "node [style=filled, fontname=monospace];")
-    (display "edge [fontname=monospace];")
+    (display "node [style=filled, fontname=monospace, shape=point];")
+    (display "edge [fontname=monospace, dir=none];")
     (if (and width height)
         (begin
           (format #t "graph [fontsize=~a, ratio=fill];" font-size)
