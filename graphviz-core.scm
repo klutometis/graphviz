@@ -14,6 +14,11 @@
 
 ;;; Height and width are in pixels.
 (define write-dot-preamble
+  @("Write a dot preamble."
+    (width "Width in pixels")
+    (height "Height in pixels")
+    (font-size "Font-size in pt")
+    (title "Title of the graph"))
   (case-lambda
    (()
     (write-dot-preamble (default-width)
@@ -37,15 +42,24 @@
                     width-in-inches
                     height-in-inches)))))))
 
-(define (write-dot-postscript) (display "}"))
+(define (write-dot-postscript)
+  @("Write the dot postscript")
+  (display "}"))
 
 (define (write-node label x y)
+  @("Write a node"
+    (label "The node's label")
+    (x "The x-coordinate of the node")
+    (y "The y-coordinate of the node"))
   (format #t "~a [pos=\"~a,~a\"];"
           label
           (* x (linear-scale))
           (* y (linear-scale))))
 
 (define (write-edge whence whither)
+  @("Write an edge"
+    (whence "The label whence")
+    (whither "The lable whither"))
   (format #t "~a -> ~a;"
           whence
           whither))
