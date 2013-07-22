@@ -29,7 +29,10 @@ Write a dot preamble.
      (display "edge [fontname=monospace, dir=none];")
      (if (and width height)
        (begin
-         (format #t "graph [fontsize=~a, ratio=fill];" font-size)
+         (format
+           #t
+           "graph [fontsize=~a, ratio=fill, splines=polyline];"
+           font-size)
          (let ((width-in-inches (px->in width))
                (height-in-inches (px->in height)))
            (format
