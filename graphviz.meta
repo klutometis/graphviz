@@ -1,0 +1,7 @@
+((synopsis "Some Graphviz abstractions")
+ (author "Peter Danenberg")
+ (category graphics)
+ (license "BSD")
+ (depends)
+ (test-depends)
+ (foreign-depends))

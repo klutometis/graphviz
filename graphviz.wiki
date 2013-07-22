@@ -1,0 +1,12 @@
+== title
+
+Description
+[[toc:]]
+=== About this egg
+
+==== Author
+
+[[/users/anonymous|Anonymous]]
+==== Colophon
+
+Documented by [[/egg/cock|cock]].

@@ -1,0 +1,13 @@
+(include "setup-helper")
+
+(verify-extension-name "graphviz")
+
+(setup-shared-extension-module
+ 'graphviz
+ (extension-version "0.1")
+ compile-options: '(-X cock))
+
+;;; Generate docs.
+(run (cock -o graphviz.wiki
+           graphviz-core.scm
+           "||" echo cock-utils not "installed:" not creating documentation))
