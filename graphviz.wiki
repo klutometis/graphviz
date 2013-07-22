@@ -2,6 +2,66 @@
 
 Description
 [[toc:]]
+=== {{write-dot-preamble}}
+<procedure>(write-dot-preamble) → unspecified</procedure>
+<procedure>(write-dot-preamble width height font-size title) → unspecified</procedure>
+Write a dot preamble.
+; width : Width in pixels
+; height : Height in pixels
+; font-size : Font-size in pt
+; title : Title of the graph
+<enscript highlight="scheme">(define write-dot-preamble
+  (case-lambda
+    (()
+     (write-dot-preamble
+       (default-width)
+       (default-height)
+       (default-font-size)
+       (default-title)))
+    ((width height font-size title)
+     (display "digraph G {")
+     (display "node [style=filled, fontname=monospace];")
+     (display "edge [fontname=monospace];")
+     (if (and width height)
+       (begin
+         (format #t "graph [fontsize=~a, ratio=fill];" font-size)
+         (let ((width-in-inches (px->in width))
+               (height-in-inches (px->in height)))
+           (format
+             #t
+             "graph [viewport=\"~a,~a\", size=\"~a,~a!\"];"
+             (in->dot width-in-inches)
+             (in->dot height-in-inches)
+             width-in-inches
+             height-in-inches)))))))
+</enscript>
+=== {{write-dot-postscript}}
+<procedure>(write-dot-postscript) → unspecified</procedure>
+Write the dot postscript
+
+<enscript highlight="scheme">(define (write-dot-postscript) (display "}"))
+</enscript>
+=== {{write-node}}
+<procedure>(write-node label x y) → unspecified</procedure>
+Write a node
+; label : The node's label
+; x : The x-coordinate of the node
+; y : The y-coordinate of the node
+<enscript highlight="scheme">(define (write-node label x y)
+  (format
+    #t
+    "~a [pos=\"~a,~a\"];"
+    label
+    (* x (linear-scale))
+    (* y (linear-scale))))
+</enscript>
+=== {{write-edge}}
+<procedure>(write-edge whence whither) → unspecified</procedure>
+Write an edge
+; whence : The label whence
+; whither : The lable whither
+<enscript highlight="scheme">(define (write-edge whence whither) (format #t "~a -> ~a;" whence whither))
+</enscript>
 === About this egg
 
 ==== Author
