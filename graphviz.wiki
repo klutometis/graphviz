@@ -1,7 +1,12 @@
-== title
+== graphviz
 
-Description
+Some Graphviz abstractions
 [[toc:]]
+=== {{default-width}}
+<parameter>default-width → 1600</parameter>
+klutometis
+<enscript highlight="scheme">(define default-width (make-parameter 1600))
+</enscript>
 === {{write-dot-preamble}}
 <procedure>(write-dot-preamble) → unspecified</procedure>
 <procedure>(write-dot-preamble width height font-size title) → unspecified</procedure>
@@ -66,7 +71,7 @@ Write an edge
 
 ==== Author
 
-[[/users/anonymous|Anonymous]]
+[[/users/anonymous|Peter Danenberg]]
 ==== Colophon
 
 Documented by [[/egg/cock|cock]].

@@ -1,3 +1,9 @@
+@(egg "graphviz")
+@(description "Some Graphviz abstractions")
+@(author "Peter Danenberg")
+@(email "pcd@roxygen.org")
+@(username "klutometis")
+
 (define default-width (make-parameter 1600))
 
 (define default-height (make-parameter 900))
