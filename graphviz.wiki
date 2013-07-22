@@ -25,14 +25,11 @@ Write a dot preamble.
        (default-title)))
     ((width height font-size title)
      (display "digraph G {")
-     (display "node [style=filled, fontname=monospace, shape=point];")
+     (display "node [style=filled, fontname=monospace, shape=circle];")
      (display "edge [fontname=monospace, dir=none];")
      (if (and width height)
        (begin
-         (format
-           #t
-           "graph [fontsize=~a, ratio=fill, splines=polyline];"
-           font-size)
+         (format #t "graph [fontsize=~a, ratio=fill]" font-size)
          (let ((width-in-inches (px->in width))
                (height-in-inches (px->in height)))
            (format
@@ -50,18 +47,19 @@ Write the dot postscript
 <enscript highlight="scheme">(define (write-dot-postscript) (display "}"))
 </enscript>
 === {{write-node}}
-<procedure>(write-node label x y) → unspecified</procedure>
+<procedure>(write-node label x y color) → unspecified</procedure>
 Write a node
 ; label : The node's label
 ; x : The x-coordinate of the node
 ; y : The y-coordinate of the node
-<enscript highlight="scheme">(define (write-node label x y)
+<enscript highlight="scheme">(define (write-node label x y color)
   (format
     #t
-    "~a [pos=\"~a,~a\"];"
+    "~a [pos=\"~a,~a\", color=~a];"
     label
     (* x (linear-scale))
-    (* y (linear-scale))))
+    (* y (linear-scale))
+    color))
 </enscript>
 === {{write-edge}}
 <procedure>(write-edge whence whither) → unspecified</procedure>

@@ -33,11 +33,11 @@
                         (default-title)))
    ((width height font-size title)
     (display "digraph G {")
-    (display "node [style=filled, fontname=monospace, shape=point];")
+    (display "node [style=filled, fontname=monospace, shape=circle];")
     (display "edge [fontname=monospace, dir=none];")
     (if (and width height)
         (begin
-          (format #t "graph [fontsize=~a, ratio=fill, splines=polyline];" font-size)
+          (format #t "graph [fontsize=~a, ratio=fill]" font-size)
           ;; Phew: viewports are specified in points at 72 per inch;
           ;; size is specified in pixels at 96 per inch.
           (let ((width-in-inches (px->in width))
@@ -52,15 +52,16 @@
   @("Write the dot postscript")
   (display "}"))
 
-(define (write-node label x y)
+(define (write-node label x y color)
   @("Write a node"
     (label "The node's label")
     (x "The x-coordinate of the node")
     (y "The y-coordinate of the node"))
-  (format #t "~a [pos=\"~a,~a\"];"
+  (format #t "~a [pos=\"~a,~a\", color=~a];"
           label
           (* x (linear-scale))
-          (* y (linear-scale))))
+          (* y (linear-scale))
+          color))
 
 (define (write-edge whence whither)
   @("Write an edge"
