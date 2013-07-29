@@ -2,6 +2,7 @@
  (author "Peter Danenberg")
  (category graphics)
  (license "BSD")
- (depends)
+ (depends cock
+          setup-helper)
  (test-depends)
  (foreign-depends))
