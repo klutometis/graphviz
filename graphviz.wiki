@@ -4,7 +4,7 @@ Some Graphviz abstractions
 [[toc:]]
 === {{default-width}}
 <parameter>default-width → 1600</parameter>
-klutometis
+
 <enscript highlight="scheme">(define default-width (make-parameter 1600))
 </enscript>
 === {{write-dot-preamble}}
@@ -72,7 +72,7 @@ Write an edge
 
 ==== Author
 
-[[/users/anonymous|Peter Danenberg]]
+[[/users/klutometis|Peter Danenberg]]
 ==== Colophon
 
 Documented by [[/egg/cock|cock]].
