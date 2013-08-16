@@ -100,6 +100,7 @@
    ((whence whither)
     (write-edge whence whither '()))
    ((whence whither attributes)
-      (format #t "~a -> ~a;"
+      (format #t "~a -> ~a [~a];"
           whence
-          whither))))
+          whither
+          (attributes->string attributes)))))
