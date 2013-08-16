@@ -3,6 +3,7 @@
  (category graphics)
  (license "BSD")
  (depends cock
+          matchable
           setup-helper)
  (test-depends test)
  (foreign-depends))
