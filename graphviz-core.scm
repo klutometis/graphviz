@@ -19,26 +19,48 @@
 
 (define linear-scale (make-parameter (in->dot 5)))
 
+(define default-node-attributes (make-parameter
+                                 '((style . filled)
+                                   (fontname . monospace)
+                                   (shape . circle))))
+
+(define default-edge-attributes (make-parameter
+                                 '((font . monospace)
+                                   (dir . none))))
+
+(define default-graph-attributes (make-parameter
+                                  '()))
+
+(define (attributes->string attributes)
+  (string-join
+   (map (match-lambda ((key . value) (format "~a=\"~a\"" key value))) attributes)
+   ","))
+
 ;;; Height and width are in pixels.
 (define write-dot-preamble
   @("Write a dot preamble."
     (width "Width in pixels")
     (height "Height in pixels")
-    (font-size "Font-size in pt")
-    (title "Title of the graph"))
+    (font-size "Font-size in pt"))
   (case-lambda
    (()
     (write-dot-preamble (default-width)
                         (default-height)
-                        (default-font-size)
-                        (default-title)))
-   ((width height font-size title)
+                        (default-font-size)))
+   ((width height font-size)
     (display "digraph G {")
-    (display "node [style=filled, fontname=monospace, shape=circle];")
-    (display "edge [fontname=monospace, dir=none];")
+    (unless (null? (default-graph-attributes))
+      (format #t "graph [~a];"
+              (attributes->string (default-graph-attributes))))
+    (unless (null? (default-node-attributes))
+      (format #t "node [~a];"
+              (attributes->string (default-node-attributes))))
+    (unless (null? (default-edge-attributes))
+      (format #t "edge [~a];"
+              (attributes->string (default-edge-attributes))))
     (if (and width height)
         (begin
-          (format #t "graph [fontsize=~a, ratio=fill]" font-size)
+          (format #t "graph [fontsize=~a, ratio=fill];" font-size)
           ;; Phew: viewports are specified in points at 72 per inch;
           ;; size is specified in pixels at 96 per inch.
           (let ((width-in-inches (px->in width))
@@ -53,21 +75,31 @@
   @("Write the dot postscript")
   (display "}"))
 
-(define (write-node label x y color)
+(define (pos x y)
+  (format "~a,~a"
+          (* x (linear-scale))
+          (* y (linear-scale))))
+
+(define write-node
   @("Write a node"
     (label "The node's label")
-    (x "The x-coordinate of the node")
-    (y "The y-coordinate of the node"))
-  (format #t "~a [pos=\"~a,~a\", color=~a];"
-          label
-          (* x (linear-scale))
-          (* y (linear-scale))
-          color))
+    (attributes "Other attributes of the node"))
+  (case-lambda
+   ((label) (write-node label '()))
+   ((label attributes)
+    (format #t "~a [~a];"
+            label
+            (attributes->string attributes)))))
 
-(define (write-edge whence whither)
+(define write-edge
   @("Write an edge"
     (whence "The label whence")
-    (whither "The lable whither"))
-  (format #t "~a -> ~a;"
+    (whither "The lable whither")
+    (attributes "Other attributes of the edge"))
+  (case-lambda
+   ((whence whither)
+    (write-edge whence whither '()))
+   ((whence whither attributes)
+      (format #t "~a -> ~a;"
           whence
-          whither))
+          whither))))
