@@ -9,27 +9,32 @@ Some Graphviz abstractions
 </enscript>
 === {{write-dot-preamble}}
 <procedure>(write-dot-preamble) → unspecified</procedure>
-<procedure>(write-dot-preamble width height font-size title) → unspecified</procedure>
+<procedure>(write-dot-preamble width height font-size) → unspecified</procedure>
 Write a dot preamble.
 ; width : Width in pixels
 ; height : Height in pixels
 ; font-size : Font-size in pt
-; title : Title of the graph
 <enscript highlight="scheme">(define write-dot-preamble
   (case-lambda
     (()
-     (write-dot-preamble
-       (default-width)
-       (default-height)
-       (default-font-size)
-       (default-title)))
-    ((width height font-size title)
+     (write-dot-preamble (default-width) (default-height) (default-font-size)))
+    ((width height font-size)
      (display "digraph G {")
-     (display "node [style=filled, fontname=monospace, shape=circle];")
-     (display "edge [fontname=monospace, dir=none];")
+     (unless
+       (null? (default-graph-attributes))
+       (format
+         #t
+         "graph [~a];"
+         (attributes->string (default-graph-attributes))))
+     (unless
+       (null? (default-node-attributes))
+       (format #t "node [~a];" (attributes->string (default-node-attributes))))
+     (unless
+       (null? (default-edge-attributes))
+       (format #t "edge [~a];" (attributes->string (default-edge-attributes))))
      (if (and width height)
        (begin
-         (format #t "graph [fontsize=~a, ratio=fill]" font-size)
+         (format #t "graph [fontsize=~a, ratio=fill];" font-size)
          (let ((width-in-inches (px->in width))
                (height-in-inches (px->in height)))
            (format
@@ -47,26 +52,28 @@ Write the dot postscript
 <enscript highlight="scheme">(define (write-dot-postscript) (display "}"))
 </enscript>
 === {{write-node}}
-<procedure>(write-node label x y color) → unspecified</procedure>
+<procedure>(write-node label) → unspecified</procedure>
+<procedure>(write-node label attributes) → unspecified</procedure>
 Write a node
 ; label : The node's label
-; x : The x-coordinate of the node
-; y : The y-coordinate of the node
-<enscript highlight="scheme">(define (write-node label x y color)
-  (format
-    #t
-    "~a [pos=\"~a,~a\", color=~a];"
-    label
-    (* x (linear-scale))
-    (* y (linear-scale))
-    color))
+; attributes : Other attributes of the node
+<enscript highlight="scheme">(define write-node
+  (case-lambda
+    ((label) (write-node label '()))
+    ((label attributes)
+     (format #t "~a [~a];" label (attributes->string attributes)))))
 </enscript>
 === {{write-edge}}
 <procedure>(write-edge whence whither) → unspecified</procedure>
+<procedure>(write-edge whence whither attributes) → unspecified</procedure>
 Write an edge
 ; whence : The label whence
 ; whither : The lable whither
-<enscript highlight="scheme">(define (write-edge whence whither) (format #t "~a -> ~a;" whence whither))
+; attributes : Other attributes of the edge
+<enscript highlight="scheme">(define write-edge
+  (case-lambda
+    ((whence whither) (write-edge whence whither '()))
+    ((whence whither attributes) (format #t "~a -> ~a;" whence whither))))
 </enscript>
 === About this egg
 
