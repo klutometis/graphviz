@@ -73,7 +73,13 @@ Write an edge
 <enscript highlight="scheme">(define write-edge
   (case-lambda
     ((whence whither) (write-edge whence whither '()))
-    ((whence whither attributes) (format #t "~a -> ~a;" whence whither))))
+    ((whence whither attributes)
+     (format
+       #t
+       "~a -> ~a [~a];"
+       whence
+       whither
+       (attributes->string attributes)))))
 </enscript>
 === About this egg
 
