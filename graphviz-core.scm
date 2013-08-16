@@ -19,17 +19,11 @@
 
 (define linear-scale (make-parameter (in->dot 5)))
 
-(define default-node-attributes (make-parameter
-                                 '((style . filled)
-                                   (fontname . monospace)
-                                   (shape . circle))))
+(define default-node-attributes (make-parameter '()))
 
-(define default-edge-attributes (make-parameter
-                                 '((font . monospace)
-                                   (dir . none))))
+(define default-edge-attributes (make-parameter '()))
 
-(define default-graph-attributes (make-parameter
-                                  '()))
+(define default-graph-attributes (make-parameter '()))
 
 (define (attributes->string attributes)
   (string-join
