@@ -4,7 +4,7 @@
 
 (setup-shared-extension-module
  'graphviz
- (extension-version "0.4")
+ (extension-version "0.5")
  compile-options: '(-X cock))
 
 ;;; Generate docs.
