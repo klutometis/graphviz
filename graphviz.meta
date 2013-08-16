@@ -4,5 +4,5 @@
  (license "BSD")
  (depends cock
           setup-helper)
- (test-depends)
+ (test-depends test)
  (foreign-depends))
