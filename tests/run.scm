@@ -3,3 +3,5 @@
 (test-assert
  "Is the mic on?"
  (not (string-null? (with-output-to-string write-dot-preamble))))
+
+(test-exit)
