@@ -47,18 +47,31 @@
    ","))
 
 ;;; Height and width are in pixels.
-(define write-dot-preamble
-  @("Write a dot preamble."
+(define write-graph-preamble
+  @("Write a graph preamble."
+    (graph-attributes "Attributes of the graph")
     (width "Width in pixels")
     (height "Height in pixels")
-    (font-size "Font-size in pt"))
+    (font-size "Font-size in pt")
+    (@example-no-eval
+     (write-graph-preamble '((splines-true)))
+     (write-node a '((label . "Big bang")))
+     (write-node b '((label . "Today")))
+     (write-edge a b '((label . "Entropy gradient")))
+     (write-graph-postamble)))
   (case-lambda
    (()
-    (write-dot-preamble (default-width)
-                        (default-height)
-                        (default-font-size)))
-   ((width height font-size)
+    (write-graph-preamble '()))
+   ((graph-attributes)
+    (write-graph-preamble graph-attributes
+                          (default-width)
+                          (default-height)
+                          (default-font-size)))
+   ((graph-attributes width height font-size)
     (display "digraph G {")
+    (unless (null? graph-attributes)
+      (format #t "graph [~a];"
+              (attributes->string graph-attributes)))
     (unless (null? (default-graph-attributes))
       (format #t "graph [~a];"
               (attributes->string (default-graph-attributes))))
