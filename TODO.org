@@ -1,2 +1,3 @@
+* TODO Make width, height, &c. optional for graphs.
 * TODO Generalize this.
-  Callbacks for nodes; style-abstractions (alists)
+  Callbacks for nodes; labeling mechanism for objects.
