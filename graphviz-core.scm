@@ -5,13 +5,17 @@
 @(username "klutometis")
 @(noop)
 
-(define default-width (make-parameter 1600))
+(define default-width
+  @("Default width for graphs")
+  (make-parameter 1600))
 
-(define default-height (make-parameter 900))
+(define default-height
+  @("Default width for graphs")
+  (make-parameter 900))
 
-(define default-font-size (make-parameter 48.0))
-
-(define default-title (make-parameter #f))
+(define default-font-size
+  @("Default font-size for graphs")
+  (make-parameter 48.0))
 
 (define (px->in px) (/ px 96))
 
@@ -19,11 +23,23 @@
 
 (define linear-scale (make-parameter (in->dot 5)))
 
-(define default-node-attributes (make-parameter '()))
+(define default-node-attributes
+  @("Default node attributes"
+    (@example-no-eval
+     (default-node-attributes '((font . monospace)))))
+  (make-parameter '()))
 
-(define default-edge-attributes (make-parameter '()))
+(define default-edge-attributes
+  @("Default edge attributes"
+    (@example-no-eval
+     (default-edge-attributes '((dir . none)))))
+  (make-parameter '()))
 
-(define default-graph-attributes (make-parameter '()))
+(define default-graph-attributes
+  @("Default graph attributes"
+    (@example-no-eval
+     (default-graph-attributes '((splines . true)))))
+  (make-parameter '()))
 
 (define (attributes->string attributes)
   (string-join
@@ -70,6 +86,10 @@
   (display "}"))
 
 (define (pos x y)
+  @("For placing nodes at specific positions in a unit graph using the {{pos}}
+ attribute, apply a linear scaling."
+    (x "The x position")
+    (y "The y position"))
   (format "~a,~a"
           (* x (linear-scale))
           (* y (linear-scale))))
@@ -77,7 +97,7 @@
 (define write-node
   @("Write a node"
     (label "The node's label")
-    (attributes "Other attributes of the node"))
+    (attributes "Attributes of the node"))
   (case-lambda
    ((label) (write-node label '()))
    ((label attributes)
@@ -89,7 +109,7 @@
   @("Write an edge"
     (whence "The label whence")
     (whither "The lable whither")
-    (attributes "Other attributes of the edge"))
+    (attributes "Attributes of the edge"))
   (case-lambda
    ((whence whither)
     (write-edge whence whither '()))
