@@ -94,8 +94,8 @@
                     width-in-inches
                     height-in-inches)))))))
 
-(define (write-dot-postscript)
-  @("Write the dot postscript")
+(define (write-graph-postamble)
+  @("Write the graph postamble.")
   (display "}"))
 
 (define (pos x y)
