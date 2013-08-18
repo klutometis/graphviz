@@ -5,10 +5,10 @@
  (not (string-null?
        (with-output-to-string
          (lambda ()
-           (write-dot-preamble)
-           (write-node 'a '((label . 'not-a)))
-           (write-node 'b '((label . 'not-b)))
-           (write-edge 'a 'b '((label . 'heisenberg)))
-           (write-dot-postscript))))))
+           (write-graph-preamble)
+           (write-node 'a '((label . a)))
+           (write-node 'b '((label . not-a)))
+           (write-edge 'a 'b '((label . heisenberg)))
+           (write-graph-postamble))))))
 
 (test-exit)
