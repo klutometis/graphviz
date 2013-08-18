@@ -26,18 +26,21 @@
 (define default-node-attributes
   @("Default node attributes"
     (@example-no-eval
+     "Creating default node attributes"
      (default-node-attributes '((font . monospace)))))
   (make-parameter '()))
 
 (define default-edge-attributes
   @("Default edge attributes"
     (@example-no-eval
+     "Creating default edge attributes"
      (default-edge-attributes '((dir . none)))))
   (make-parameter '()))
 
 (define default-graph-attributes
   @("Default graph attributes"
     (@example-no-eval
+     "Creating default graph attributes"
      (default-graph-attributes '((splines . true)))))
   (make-parameter '()))
 
@@ -54,6 +57,7 @@
     (height "Height in pixels")
     (font-size "Font-size in pt")
     (@example-no-eval
+     "A trivial graph"
      (write-graph-preamble '((splines-true)))
      (write-node a '((label . "Big bang")))
      (write-node b '((label . "Today")))

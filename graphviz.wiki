@@ -23,21 +23,24 @@ Default node attributes
 <enscript highlight="scheme">(define default-node-attributes (make-parameter '()))
 </enscript>
 ==== Examples
-(default-node-attributes (quote ((font . monospace))))
+Creating default node attributes
+ (default-node-attributes '((font . monospace)))
 === {{default-edge-attributes}}
 <parameter>default-edge-attributes → (quote ())</parameter>
 Default edge attributes
 <enscript highlight="scheme">(define default-edge-attributes (make-parameter '()))
 </enscript>
 ==== Examples
-(default-edge-attributes (quote ((dir . none))))
+Creating default edge attributes
+ (default-edge-attributes '((dir . none)))
 === {{default-graph-attributes}}
 <parameter>default-graph-attributes → (quote ())</parameter>
 Default graph attributes
 <enscript highlight="scheme">(define default-graph-attributes (make-parameter '()))
 </enscript>
 ==== Examples
-(default-graph-attributes (quote ((splines . true))))
+Creating default graph attributes
+ (default-graph-attributes '((splines . true)))
 === {{write-graph-preamble}}
 <procedure>(write-graph-preamble) → unspecified</procedure>
 <procedure>(write-graph-preamble graph-attributes) → unspecified</procedure>
@@ -87,7 +90,8 @@ Write a graph preamble.
              height-in-inches)))))))
 </enscript>
 ==== Examples
-(write-graph-preamble (quote ((splines-true))))
+A trivial graph
+ (write-graph-preamble '((splines-true)))
  (write-node a '((label . "Big bang")))
  (write-node b '((label . "Today")))
  (write-edge a b '((label . "Entropy gradient")))
