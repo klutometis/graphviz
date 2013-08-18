@@ -1,10 +1,3 @@
-@(egg "graphviz")
-@(description "Some Graphviz abstractions")
-@(author "Peter Danenberg")
-@(email "pcd@roxygen.org")
-@(username "klutometis")
-@(noop)
-
 (define default-width
   @("Default width for graphs")
   (make-parameter 1600))

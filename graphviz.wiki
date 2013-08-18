@@ -145,7 +145,8 @@ Write an edge
 ==== Author
 
 [[/users/klutometis|Peter Danenberg]]
-
+==== Repository
+[[https://github.com/klutometis/graphviz]]
 ==== License
 BSD
 ==== Dependencies
