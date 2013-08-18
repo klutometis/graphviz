@@ -58,7 +58,7 @@
     (font-size "Font-size in pt")
     (@example-no-eval
      "A trivial graph"
-     (write-graph-preamble '((splines-true)))
+     (write-graph-preamble '((splines . true))) 
      (write-node a '((label . "Big bang")))
      (write-node b '((label . "Today")))
      (write-edge a b '((label . "Entropy gradient")))
