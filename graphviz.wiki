@@ -4,22 +4,63 @@ Some Graphviz abstractions
 [[toc:]]
 === {{default-width}}
 <parameter>default-width → 1600</parameter>
-
+Default width for graphs
 <enscript highlight="scheme">(define default-width (make-parameter 1600))
 </enscript>
-=== {{write-dot-preamble}}
-<procedure>(write-dot-preamble) → unspecified</procedure>
-<procedure>(write-dot-preamble width height font-size) → unspecified</procedure>
-Write a dot preamble.
+=== {{default-height}}
+<parameter>default-height → 900</parameter>
+Default width for graphs
+<enscript highlight="scheme">(define default-height (make-parameter 900))
+</enscript>
+=== {{default-font-size}}
+<parameter>default-font-size → 48.0</parameter>
+Default font-size for graphs
+<enscript highlight="scheme">(define default-font-size (make-parameter 48.0))
+</enscript>
+=== {{default-node-attributes}}
+<parameter>default-node-attributes → (quote ())</parameter>
+Default node attributes
+<enscript highlight="scheme">(define default-node-attributes (make-parameter '()))
+</enscript>
+==== Examples
+(default-node-attributes (quote ((font . monospace))))
+=== {{default-edge-attributes}}
+<parameter>default-edge-attributes → (quote ())</parameter>
+Default edge attributes
+<enscript highlight="scheme">(define default-edge-attributes (make-parameter '()))
+</enscript>
+==== Examples
+(default-edge-attributes (quote ((dir . none))))
+=== {{default-graph-attributes}}
+<parameter>default-graph-attributes → (quote ())</parameter>
+Default graph attributes
+<enscript highlight="scheme">(define default-graph-attributes (make-parameter '()))
+</enscript>
+==== Examples
+(default-graph-attributes (quote ((splines . true))))
+=== {{write-graph-preamble}}
+<procedure>(write-graph-preamble) → unspecified</procedure>
+<procedure>(write-graph-preamble graph-attributes) → unspecified</procedure>
+<procedure>(write-graph-preamble graph-attributes width height font-size) → unspecified</procedure>
+Write a graph preamble.
+; graph-attributes : Attributes of the graph
 ; width : Width in pixels
 ; height : Height in pixels
 ; font-size : Font-size in pt
-<enscript highlight="scheme">(define write-dot-preamble
+<enscript highlight="scheme">(define write-graph-preamble
   (case-lambda
-    (()
-     (write-dot-preamble (default-width) (default-height) (default-font-size)))
-    ((width height font-size)
+    (() (write-graph-preamble '()))
+    ((graph-attributes)
+     (write-graph-preamble
+       graph-attributes
+       (default-width)
+       (default-height)
+       (default-font-size)))
+    ((graph-attributes width height font-size)
      (display "digraph G {")
+     (unless
+       (null? graph-attributes)
+       (format #t "graph [~a];" (attributes->string graph-attributes)))
      (unless
        (null? (default-graph-attributes))
        (format
@@ -45,18 +86,32 @@ Write a dot preamble.
              width-in-inches
              height-in-inches)))))))
 </enscript>
-=== {{write-dot-postscript}}
-<procedure>(write-dot-postscript) → unspecified</procedure>
-Write the dot postscript
+==== Examples
+(write-graph-preamble (quote ((splines-true))))
+ (write-node a '((label . "Big bang")))
+ (write-node b '((label . "Today")))
+ (write-edge a b '((label . "Entropy gradient")))
+ (write-graph-postamble)
+=== {{write-graph-postamble}}
+<procedure>(write-graph-postamble) → unspecified</procedure>
+Write the graph postamble.
 
-<enscript highlight="scheme">(define (write-dot-postscript) (display "}"))
+<enscript highlight="scheme">(define (write-graph-postamble) (display "}"))
+</enscript>
+=== {{pos}}
+<procedure>(pos x y) → unspecified</procedure>
+For placing nodes at specific positions in a unit graph using the {{pos}}
+ attribute, apply a linear scaling.
+; x : The x position
+; y : The y position
+<enscript highlight="scheme">(define (pos x y) (format "~a,~a" (* x (linear-scale)) (* y (linear-scale))))
 </enscript>
 === {{write-node}}
 <procedure>(write-node label) → unspecified</procedure>
 <procedure>(write-node label attributes) → unspecified</procedure>
 Write a node
 ; label : The node's label
-; attributes : Other attributes of the node
+; attributes : Attributes of the node
 <enscript highlight="scheme">(define write-node
   (case-lambda
     ((label) (write-node label '()))
@@ -69,7 +124,7 @@ Write a node
 Write an edge
 ; whence : The label whence
 ; whither : The lable whither
-; attributes : Other attributes of the edge
+; attributes : Attributes of the edge
 <enscript highlight="scheme">(define write-edge
   (case-lambda
     ((whence whither) (write-edge whence whither '()))
