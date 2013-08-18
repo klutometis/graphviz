@@ -145,6 +145,22 @@ Write an edge
 ==== Author
 
 [[/users/klutometis|Peter Danenberg]]
+
+==== License
+BSD
+==== Dependencies
+* [[cock]]
+* [[matchable]]
+* [[setup-helper]]
+
+==== Versions
+; 0.2 : Add dependencies.
+; 0.3 : Get rid of 0.1.
+; 0.4 : Abstract out attributes.
+; 0.5 : Add test-exit.
+; 0.6 : Add attributes to edge.
+; 0.7 : Sparser defaults
+; 0.8 : Write-graph-preamble, &c.
 ==== Colophon
 
 Documented by [[/egg/cock|cock]].
