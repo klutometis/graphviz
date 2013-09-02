@@ -8,6 +8,7 @@
  compile-options: '(-X cock))
 
 ;;; Generate docs.
-(run (cock -o graphviz.wiki
-           graphviz-core.scm
-           "||" echo cock-utils not "installed:" not creating documentation))
+(handle-exceptions exn
+  (warning "Not generating documentation")
+  (include "setup-helper-cock")
+  (run-cock -o graphviz.wiki graphviz-core.scm))
