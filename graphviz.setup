@@ -1,14 +1,11 @@
-(include "setup-helper")
+(use hahn setup-helper-mod)
 
 (verify-extension-name "graphviz")
 
 (setup-shared-extension-module
  'graphviz
- (extension-version "0.8")
- compile-options: '(-X cock))
+ (extension-version "0.8.1")
+ compile-options: '(-X hahn))
 
 ;;; Generate docs.
-(handle-exceptions exn
-  (warning "Not generating documentation")
-  (include "setup-helper-cock")
-  (run-cock -o graphviz.wiki graphviz-core.scm))
+(run-hahn -o graphviz.wiki graphviz-core.scm)

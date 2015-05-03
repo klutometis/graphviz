@@ -46,10 +46,10 @@ Creating default graph attributes
 <procedure>(write-graph-preamble graph-attributes) → unspecified</procedure>
 <procedure>(write-graph-preamble graph-attributes width height font-size) → unspecified</procedure>
 Write a graph preamble.
-; graph-attributes : Attributes of the graph
-; width : Width in pixels
-; height : Height in pixels
-; font-size : Font-size in pt
+; {{graph-attributes}} : Attributes of the graph
+; {{width}} : Width in pixels
+; {{height}} : Height in pixels
+; {{font-size}} : Font-size in pt
 <enscript highlight="scheme">(define write-graph-preamble
   (case-lambda
     (() (write-graph-preamble '()))
@@ -106,16 +106,16 @@ Write the graph postamble.
 <procedure>(pos x y) → unspecified</procedure>
 For placing nodes at specific positions in a unit graph using the {{pos}}
  attribute, apply a linear scaling.
-; x : The x position
-; y : The y position
+; {{x}} : The x position
+; {{y}} : The y position
 <enscript highlight="scheme">(define (pos x y) (format "~a,~a" (* x (linear-scale)) (* y (linear-scale))))
 </enscript>
 === {{write-node}}
 <procedure>(write-node label) → unspecified</procedure>
 <procedure>(write-node label attributes) → unspecified</procedure>
 Write a node
-; label : The node's label
-; attributes : Attributes of the node
+; {{label}} : The node's label
+; {{attributes}} : Attributes of the node
 <enscript highlight="scheme">(define write-node
   (case-lambda
     ((label) (write-node label '()))
@@ -126,9 +126,9 @@ Write a node
 <procedure>(write-edge whence whither) → unspecified</procedure>
 <procedure>(write-edge whence whither attributes) → unspecified</procedure>
 Write an edge
-; whence : The label whence
-; whither : The lable whither
-; attributes : Attributes of the edge
+; {{whence}} : The label whence
+; {{whither}} : The lable whither
+; {{attributes}} : Attributes of the edge
 <enscript highlight="scheme">(define write-edge
   (case-lambda
     ((whence whither) (write-edge whence whither '()))
@@ -150,18 +150,11 @@ Write an edge
 ==== License
 BSD
 ==== Dependencies
-* [[cock]]
+* [[(hahn 0.9.3)]]
 * [[matchable]]
 * [[setup-helper]]
 
-==== Versions
-; 0.2 : Add dependencies.
-; 0.3 : Get rid of 0.1.
-; 0.4 : Abstract out attributes.
-; 0.5 : Add test-exit.
-; 0.6 : Add attributes to edge.
-; 0.7 : Sparser defaults
-; 0.8 : Write-graph-preamble, &c.
+
 ==== Colophon
 
-Documented by [[/egg/cock|cock]].
+Documented by [[/egg/hahn|hahn]].
