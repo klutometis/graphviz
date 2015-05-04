@@ -154,7 +154,16 @@ BSD
 * [[matchable]]
 * [[setup-helper]]
 
-
+==== Versions
+; [[https://github.com/klutometis/graphviz/releases/tag/0.2|0.2]] : Add dependencies.
+; [[https://github.com/klutometis/graphviz/releases/tag/0.3|0.3]] : Get rid of 0.1.
+; [[https://github.com/klutometis/graphviz/releases/tag/0.4|0.4]] : Abstract out attributes.
+; [[https://github.com/klutometis/graphviz/releases/tag/0.5|0.5]] : Add test-exit.
+; [[https://github.com/klutometis/graphviz/releases/tag/0.6|0.6]] : Add attributes to edge.
+; [[https://github.com/klutometis/graphviz/releases/tag/0.7|0.7]] : Sparser defaults
+; [[https://github.com/klutometis/graphviz/releases/tag/0.8|0.8]] : Write-graph-preamble, &c.
+; [[https://github.com/klutometis/graphviz/releases/tag/0.8.1|0.8.1]] : Use hahn.
+; [[https://github.com/klutometis/graphviz/releases/tag/0.8.2|0.8.2]] : Version should be a string.
 ==== Colophon
 
 Documented by [[/egg/hahn|hahn]].
