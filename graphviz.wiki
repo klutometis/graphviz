@@ -150,7 +150,7 @@ Write an edge
 ==== License
 BSD
 ==== Dependencies
-* [[(hahn 0.9.3)]]
+* [[hahn]]
 * [[matchable]]
 * [[setup-helper]]
 
